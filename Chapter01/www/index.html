@@ -1,67 +1,94 @@
 <html>
+<html>
 
 <head>
-  <title>HTML movies application</title>
+  <title>IMDB Movie Explorer | HTML UI</title>
+
   <link rel="stylesheet" type="text/css" href="shared/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="shared/shiny.min.css"/>
   <link rel="stylesheet" type="text/css" href="styles.css"/>
+
   <script src="shared/jquery.min.js" type="text/javascript"></script>
+  <script src="shared/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="shared/shiny.js" type="text/javascript"></script>
 
 </head>
 
 <body>
 
-    <div class="container-fluid">
-      <h1>Minimal HTML UI</h1>
+<div class="container-fluid">
+  <h1>IMDB Movie Explorer</h1>
 
-      <div class="row">
+  <div class="row">
 
-        <div class="col-sm-4">
-          <h3>Control panel</h3>
+    <div class="col-sm-4">
+      <form class="well" role="complementary">
+        <h3 style="color:red; font-family:Impact, Charcoal, sans-serif;">
+          Control panel</h3>
 
-          <div id="listMovies" class="shiny-html-output"></div>
+        <h4>Budgets over time</h4>
+        <label>
+          Which genre?
+          <select name="genre" class="form-control">
+            <option value="Action">Action</option>
+            <option value="Animation">Animation</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Romance">Romance</option>
+            <option value="Short">Short</option>
+          </select>
+        </label>
 
-          <div class="form-group">
-            <label for="movie-title">
+        <h4>Movie Picker</h4>
+        <div id="listMovies" class="shiny-html-output"></div>
+
+        <div class="form-group">
+          <label for="movie-title">
             Title: <input id="movie-title" name="title" class="form-control" type="text"><br>
-            </label>
-          </div>
-
-          <label>
-            Which genre?
-            <select name = "genre" class = "form-control">
-              <option value="Action">Action</option>
-              <option value="Animation">Animation</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Drama">Drama</option>
-              <option value="Documentary">Documentary</option>
-              <option value="Romance">Romance</option>
-              <option value="Short">Short</option>
-            </select>
           </label>
-
         </div>
 
-        <div class="col-sm-8">
-
-          <div id="budgetYear" class="shiny-plot-output"
-          style="width: 100%; height: 400px"></div>
-          <p>For more information about <strong>Shiny</strong> look at the
-          <a href="http://shiny.rstudio.com/articles/">documentation.</a></p>
-          <hr>
-          <p>If you wish to write some code you may like to use
-          the pre() function like this:</p>
-            <pre>sliderInput("year", "Year", min = 1893, max = 2005,
-                   value = c(1945, 2005), sep = "")</pre>
-
-          <div id = "moviePicker" class = "shiny-html-output"></div>
-
-        </div>
-
-      </div>
-
+      </form>
     </div>
+
+    <div class="col-sm-8">
+      <div class="tabbable" id="main-tabset">
+        <ul class="nav nav-tabs" data-tabsetid="main-tabset" role="tablist">
+          <li class="active" role="presentation">
+            <a href="#budget-pane" data-toggle="tab" data-value="Budgets over time" role="tab" id="budget-tab" tabindex="0" aria-selected="true" aria-controls="budget-pane">Budgets over time</a>
+          </li>
+          <li role="presentation">
+            <a href="#movie-pane" data-toggle="tab" data-value="Movie picker" role="tab" id="movie-tab" tabindex="-1" aria-selected="false" aria-controls="movie-pane">Movie picker</a>
+          </li>
+        </ul>
+        <div class="tab-content" data-tabsetid="main-tabset">
+          <div class="tab-pane active" data-value="Budgets over time" id="budget-pane" role="tabpanel" tabindex="0" aria-hidden="false" aria-labelledby="budget-tab">
+            <div id="budgetYear" class="shiny-plot-output" style="width: 100%; height: 400px"></div>
+            <p>
+                For more information about
+                <strong>Shiny</strong>
+                look at the
+                <a href="http://shiny.rstudio.com/articles/">documentation.</a>
+              </p>
+              <hr>
+              <h3>Some code goes under here</h3>
+              <p>
+                If you wish to write some code you may like
+                to use the pre() function like this:
+              </p><pre>sliderInput("year", "Year", min = 1893, max = 2005, value = c(1945, 2005), sep = "")</pre>
+              <p></p>
+          </div>
+          <div class="tab-pane" id="movie-pane" role="tabpanel" tabindex="1" aria-hidden="false" aria-labelledby="movie-tab">
+      <div id="moviePicker" class = "shiny-html-output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
 </body>
 

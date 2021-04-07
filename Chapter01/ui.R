@@ -3,52 +3,64 @@ library(shinydashboard)
 
 fluidPage(
 
-  tags$head(
-    tags$style(HTML("h3 {
-                      color: blue;font-family:courier;
-                      text-decoration: underline;
-                    }"
-    ))
-  ),
-
-  includeCSS(paste0(getwd(), "/www/styles.css")),
-
-  sidebarLayout(
-    sidebarPanel(
-      titlePanel("IMDB Movie Explorer"),
-
-      h1("Control panel",
-        style = "color:red; font-family:Impact, Charcoal, sans-serif;"),
-      sliderInput("year", "Year", min = 1893, max = 2005,
-        value = c(1945, 2005), sep = ""),
-      textInput("title", "Title"),
-      selectInput("genre", "Which genre?",
-        c("Action", "Animation", "Comedy", "Drama",
-          "Documentary", "Romance", "Short")),
-
-      uiOutput("listMovies")
+    tags$head(
+        tags$style(HTML(
+            "h3 {
+                color: blue;font-family:courier;
+                text-decoration: underline;
+            }"
+        ))
     ),
 
-    mainPanel(
-      tabsetPanel(
-        tabPanel("Budgets over time",
-          plotOutput("budgetYear"),
-          p("For more information about ",
-            strong("Shiny"), " look at the ",
-            a(href = "http://shiny.rstudio.com/articles/", "documentation.")
-          ),
-          hr(),
-          h3("Some code goes under here"),
-          p(
-            "If you wish to write some code you may like
-            to use the pre() function like this:",
-            pre(
-              'sliderInput("year", "Year", min = 1893, max = 2005, value = c(1945, 2005), sep = "")'
-            )
-          )
+    includeCSS(paste0(getwd(), "/www/styles.css")),
+
+    titlePanel("IMDB Movie Explorer"),
+
+    ## At request-time, server.R/ui.R has no idea of
+    ## what the frontend DOM structure looks like so...
+
+    sidebarLayout(
+        sidebarPanel(
+            h1("Control panel",
+                style = "color:red; font-family:Impact, Charcoal, sans-serif;"),
+
+
+            h4("Budgets over time"),
+            selectInput(inputId = "genre", label = "Which genre?",
+                c("Action", "Animation", "Comedy", "Drama",
+                    "Documentary", "Romance", "Short")),
+
+            sliderInput("year", "Years", min = 1893, max = 2005,
+                value = c(1945, 2005), sep = ""),
+
+            h4("Movie Picker"),
+            uiOutput(outputId = "listMovies"),
+
+            textInput(inputId = "title", label = "Title")
         ),
-        tabPanel("Movie picker", tableOutput("moviePicker"))
-      )
+
+        mainPanel(
+            tabsetPanel(
+                tabPanel(
+                    "Budgets over time",
+                    plotOutput("budgetYear"),
+                    p(
+                        "For more information about ",
+                        strong("Shiny"), " look at the ",
+                        a(href = "http://shiny.rstudio.com/articles/", "documentation.")
+                    ),
+                    hr(),
+                    h3("Some code goes under here"),
+                    p(
+                        "If you wish to write some code you may like
+                        to use the pre() function like this:",
+                        pre(
+                            'sliderInput("year", "Year", min = 1893, max = 2005, value = c(1945, 2005), sep = "")'
+                        )
+                    )
+                ),
+                tabPanel("Movie picker", tableOutput("moviePicker"))
+            )
+        )
     )
-  )
 )

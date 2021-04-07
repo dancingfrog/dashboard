@@ -2,8 +2,12 @@ p {
     font-size: 75%;
 }
 
+.row {
+    margin: 0 0;
+}
+
 .form-control, .selectize-input {
-    min-width: 272px;
+    min-width: 268px;
 }
 
 .well {

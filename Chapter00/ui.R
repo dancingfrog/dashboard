@@ -1,0 +1,13 @@
+library(shiny)
+library(shinydashboard)
+
+dashboardPage(
+  dashboardHeader(title="Query Parameters"),
+  dashboardSidebar(),
+  dashboardBody(
+    h3("URL components"),
+    verbatimTextOutput("urlText"),
+    h3("Parsed query string"),
+    verbatimTextOutput("queryText")
+  )
+)

@@ -1,0 +1,6 @@
+"shiny","rstudio/shiny"
+"shinydashboard","rstudio/shinydashboard"
+"tidyverse", "tidyverse/tidyverse"
+"dplyr","tidyverse/dplyr"
+"ggplot2movies","hadley/ggplot2movies"
+"rlang","r-lib/rlang"

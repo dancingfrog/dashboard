@@ -1,4 +1,4 @@
-
+library(shiny)
 library(ggplot2movies)
 library(tidyverse)
 library(scales)
@@ -7,13 +7,13 @@ library(rlang)
 
 function(input, output) {
   
-  moviesSubset = reactive({
+  moviesSubset <- reactive({
     
     movies %>% filter(UQ(sym(input$genre)) == 1)
 
-  })n
+  })
   
-  output$budgetYear = renderPlot({
+  output$budgetYear <- renderPlot({
     
                    budgetByYear = summarise(group_by(moviesSubset(), year), 
                                             m = mean(budget, na.rm = TRUE))

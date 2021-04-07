@@ -1,0 +1,12 @@
+p {
+    font-size: 75%;
+}
+
+.form-control, .selectize-input {
+    min-width: 272px;
+}
+
+.well {
+    min-height: 20px;
+    padding-top: 0;
+}

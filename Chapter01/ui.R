@@ -11,12 +11,12 @@ fluidPage(
     ))
   ),
 
-  includeCSS(paste0(getwd(), "/styles.css")),
-
-  #titlePanel("Movies explorer"),
+  includeCSS(paste0(getwd(), "/www/styles.css")),
 
   sidebarLayout(
     sidebarPanel(
+      titlePanel("IMDB Movie Explorer"),
+
       h1("Control panel",
         style = "color:red; font-family:Impact, Charcoal, sans-serif;"),
       sliderInput("year", "Year", min = 1893, max = 2005,

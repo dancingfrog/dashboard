@@ -4,16 +4,17 @@
   <title>HTML movies application</title>
   <link rel="stylesheet" type="text/css" href="shared/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="shared/shiny.min.css"/>
+  <link rel="stylesheet" type="text/css" href="styles.css"/>
   <script src="shared/jquery.min.js" type="text/javascript"></script>
-  <script src="shared/shiny.min.js" type="text/javascript"></script>
+  <script src="shared/shiny.js" type="text/javascript"></script>
 
 </head>
 
 <body>
 
-    <h1>Minimal HTML UI</h1>
-
     <div class="container-fluid">
+      <h1>Minimal HTML UI</h1>
+
       <div class="row">
 
         <div class="col-sm-4">
@@ -21,17 +22,24 @@
 
           <div id="listMovies" class="shiny-html-output"></div>
 
-          Title:<input type="text" name="title"><br>
+          <div class="form-group">
+            <label for="movie-title">
+            Title: <input id="movie-title" name="title" class="form-control" type="text"><br>
+            </label>
+          </div>
 
-          <select name = "genre" class = "form-control">
-            <option value="Action">Action</option>
-            <option value="Animation">Animation</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Documentary">Documentary</option>
-            <option value="Romance">Romance</option>
-            <option value="Short">Short</option>
-          </select>
+          <label>
+            Which genre?
+            <select name = "genre" class = "form-control">
+              <option value="Action">Action</option>
+              <option value="Animation">Animation</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Drama">Drama</option>
+              <option value="Documentary">Documentary</option>
+              <option value="Romance">Romance</option>
+              <option value="Short">Short</option>
+            </select>
+          </label>
 
         </div>
 

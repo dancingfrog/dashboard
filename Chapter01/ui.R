@@ -13,7 +13,7 @@ fluidPage(
 
   includeCSS(paste0(getwd(), "/styles.css")),
 
-  titlePanel("Movies explorer"),
+  #titlePanel("Movies explorer"),
 
   sidebarLayout(
     sidebarPanel(

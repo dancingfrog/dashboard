@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+.RData
+.Rhistory
+*.Rproj*
+*.bak
+.*.R
+dist
+build
+lib
+node_modules
+out
+target
+www

@@ -1,10 +1,8 @@
 library(shiny)
 library(shinydashboard)
 
-options(shiny.launch.browser = .rs.invokeShinyWindowExternal)
-
 function(input, output, session) {
-  
+
   # Return the components of the URL in a string:
   output$urlText <- renderText({
     paste(sep = "",
@@ -15,12 +13,18 @@ function(input, output, session) {
           "search: ",   session$clientData$url_search,   "\n"
     )
   })
-  
+
   # Parse the GET query string
   output$queryText <- renderText({
     query <- parseQueryString(session$clientData$url_search)
-    
+
     # Return a string with key-value pairs
-    paste(names(query), query, sep = "=", collapse=", ")
+    paste(
+      names(query),
+      sapply(query, function(q) {
+          if (grepl(",", q))
+            unlist(strsplit(q, split=","))
+          else q
+      }), sep = "=", collapse=", ")
   })
 }

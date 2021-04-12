@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>Minimal HTML UI</title>
     {{ headContent() }}
     {{ bootstrapLib() }}
   </head>
@@ -9,16 +10,18 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-4">
-          <h3>Control panel</h3>
-          
-            {{ sliderInput("year", "Year", min = 1893, max = 2005, value = c(1945, 2005), sep = "") }}
-               
-            {{ textInput("title", "Title") }}
-                   
-            <div id="listMovies" class="shiny-html-output"></div>
-          
-            {{ selectInput("genre", "Which genre?",  c("Action", "Animation", "Comedy", "Drama", "Documentary", "Romance", "Short")) }}
-          
+          <h3>Report Controls</h3>
+
+          <h4>Budgets over time</h4>
+          {{ selectInput("genre", "Which genre?",  c("Action", "Animation", "Comedy", "Drama", "Documentary", "Romance", "Short")) }}
+
+          <h4>Movie Picker</h4>
+          <div id="listMovies" class="shiny-html-output"></div>
+
+          {{ textInput("title", "Title") }}
+
+          {{ sliderInput("year", "Year", min = 1893, max = 2005, value = c(1945, 2005), sep = "") }}
+
         </div>
         
         <div class="col-sm-8">

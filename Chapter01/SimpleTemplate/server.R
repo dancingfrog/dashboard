@@ -6,17 +6,18 @@ library(rlang)
 
 function(input, output) {
   
-  moviesSubset = reactive({
+  moviesSubset <- reactive({
     
     movies %>% filter(year %in% seq(input$year[1], input$year[2]), 
                       UQ(sym(input$genre)) == 1)
     
   })
   
-  output$budgetYear = renderPlot({
+  output$budgetYear <- renderPlot({
     
-    budgetByYear = summarise(group_by(moviesSubset(), year), 
-                             m = mean(budget, na.rm = TRUE))
+    budgetByYear <- moviesSubset() %>%
+        group_by(year) %>%
+        summarise(m = mean(budget, na.rm = TRUE))
     
     ggplot(budgetByYear[complete.cases(budgetByYear), ], 
            aes(x = year, y = m)) + 
@@ -27,7 +28,7 @@ function(input, output) {
     
   })
   
-  output$listMovies = renderUI({
+  output$listMovies <- renderUI({
     
     selectInput("pickMovie", "Pick a movie", 
                 choices = moviesSubset() %>% 
@@ -36,7 +37,7 @@ function(input, output) {
     )
   })
   
-  output$moviePicker = renderTable({
+  output$moviePicker <- renderTable({
     
     if(is.null(input$pickMovie)) return()
     

@@ -21,22 +21,21 @@ fluidPage(
 
     sidebarLayout(
         sidebarPanel(
-            h1("Control panel",
+            h1("Report Controls",
                 style = "color:red; font-family:Impact, Charcoal, sans-serif;"),
 
+            textInput(inputId = "title", label = "Title"),
 
             h4("Budgets over time"),
             selectInput(inputId = "genre", label = "Which genre?",
                 c("Action", "Animation", "Comedy", "Drama",
                     "Documentary", "Romance", "Short")),
 
-            sliderInput("year", "Years", min = 1893, max = 2005,
-                value = c(1945, 2005), sep = ""),
-
             h4("Movie Picker"),
             uiOutput(outputId = "listMovies"),
 
-            textInput(inputId = "title", label = "Title")
+            sliderInput("year", "Years", min = 1893, max = 2005,
+                value = c(1945, 2005), sep = "")
         ),
 
         mainPanel(

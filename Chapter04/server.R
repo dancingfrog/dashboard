@@ -24,13 +24,14 @@ function(input, output, session) {
     query <- parseQueryString(session$clientData$url_search)
 
     # Return a string with key-value pairs
-    paste(
+    result <- paste(
       names(query),
       sapply(query, function(q) {
           if (grepl(",", q))
             unlist(strsplit(q, split=","))
           else q
       }), sep = "=", collapse=", ")
+    return(result)
   })
 
   moviesSubset <- reactive({

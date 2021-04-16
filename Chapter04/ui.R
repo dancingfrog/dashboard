@@ -1,10 +1,42 @@
 library(shiny)
 library(ggplot2movies)
 
+boxxyOutput <- function(id){
+  class <- "boxxy"
+  title <- h1(
+      id = sprintf("%s-boxxy-title", id),
+      class = "boxxy-title"
+  )
+  body <- p(
+      id = sprintf("%s-boxxy-counter", id),
+      class = "boxxy-value"
+  )
+
+  el <- tags$div(id = id, class = class, title, body)
+
+  # get full path
+  path <- normalizePath("assets")
+
+  deps <- list(
+      htmltools::htmlDependency(
+          name = "boxxy",
+          version = "1.0.0",
+          src = c(file = path),
+          script = c("binding.js", "countUp.js"),
+          stylesheet = "styles.css"
+      )
+  )
+
+  htmltools::attachDependencies(el, deps)
+}
+
 ui <- htmlTemplate(
-    "template.html",
+    "template.html.R",
+    customOutput = (function () {
+      boxxyOutput("customOutput")
+    })(),
     text = (function () {
-      textInput("title", "Title")
+      textInput("title", "Title", "Custom Output")
     })(),
     comboBox = (function () {
       selectInput("genre", "Which genre?",

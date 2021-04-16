@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <head>
     <title>Minimal HTML UI</title>
     {{ headContent() }}
@@ -12,10 +12,16 @@
         <div class="col-sm-4">
           <h3>Report Controls</h3>
 
-<!--          {{ text }}-->
-          <label for="movie-title">
-            Title: <input id="movie-title" name="title" class="form-control" type="text"><br>
-          </label>
+          <!--<label for="movie-title">-->
+          <!--  Title: <input id="movie-title" name="title" class="form-control" type="text"><br>-->
+          <!--</label>-->
+          {{ text }}
+
+          <!--<div id="customOutput" class="boxxy shiny-bound-output">-->
+          <!--  <h1 id="customOutput-boxxy-title" class="boxxy-title"></h1>-->
+          <!--  <p id="customOutput-boxxy-counter" class="boxxy-value"></p>-->
+          <!--</div>-->
+          {{ customOutput }}
 
           <h4>Budgets over time</h4>
           {{ comboBox }}
@@ -46,4 +52,4 @@
       </div>
     </div>
   </body> 
-</html>  
+</html>

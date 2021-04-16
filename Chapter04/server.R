@@ -5,7 +5,27 @@ library(shiny)
 library(shinydashboard)
 library(tidyverse)
 
+boxxy <- function(title, value, color = "#ef476f", animate = TRUE){
+  list(
+      title = title, value = value, color = color, animate = animate
+  )
+}
+
+renderBoxxy <- function(expr, env = parent.frame(),
+    quoted = FALSE) {
+  # Convert the expression + environment into a function
+  render_func <- shiny::exprToFunction(expr, env, quoted)
+
+  return(render_func)
+}
+
 function(input, output, session) {
+
+  report_title <- reactive(input$title)
+
+  output$customOutput <- renderBoxxy({
+    boxxy(title = report_title()[1], value = 9500, color = "#ef476f", animate = FALSE)
+  })
 
   # Return the components of the URL in a string:
   output$urlText <- renderText({
@@ -52,7 +72,7 @@ function(input, output, session) {
         geom_line() +
         scale_y_continuous(labels = scales::comma) +
         geom_smooth(method = "loess") +
-        ggtitle(input$title)
+        ggtitle(report_title()[1])
 
   })
 

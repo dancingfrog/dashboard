@@ -1,7 +1,17 @@
+library(coriverse)
 library(shiny)
 library(shinydashboard)
+library(shinylogs)
+
+LOG_FILE <- 'logs'
+
+if (!dir.exists("logs")) {
+  dir.create("logs")
+}
 
 function(input, output, session) {
+
+  track_usage(storage_mode = store_json(path = "logs/"))
 
   # Return the components of the URL in a string:
   output$urlText <- renderText({
@@ -10,7 +20,9 @@ function(input, output, session) {
           "hostname: ", session$clientData$url_hostname, "\n",
           "pathname: ", session$clientData$url_pathname, "\n",
           "port: ",     session$clientData$url_port,     "\n",
-          "search: ",   session$clientData$url_search,   "\n"
+          "search: ",   session$clientData$url_search,   "\n",
+          "token: ",   session$token,   "\n",
+          "app-token: ",   session$options$appToken,   "\n"
     )
   })
 

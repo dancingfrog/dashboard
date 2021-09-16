@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Ports": [{
+    "ContainerPort": 3838,
+    "HostPort": 8000
+  }],
+  "Logging": "/data/logs",
+  "Image": {
+    "Name": "docker.io/coriverse/shinyapps:dashboard-run",
+  	"Update": "true"
+  }
+}

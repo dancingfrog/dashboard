@@ -8,6 +8,7 @@
 dist
 build
 lib
+logs
 node_modules
 out
 target
